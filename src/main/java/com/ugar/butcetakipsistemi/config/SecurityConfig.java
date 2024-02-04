@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .build();
         UserDetails mustafa = User.builder()
                 .username("mustafa")
-                .password("{noop}çelik")
+                .password("{noop}rami")
                 .roles("MUSTAFA")
                 .build();
         UserDetails hilmi = User.builder()

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,4 +46,20 @@ public class TransactionService {
 
         return totalIncome.subtract(totalExpense);
     }
+
+    public BigDecimal findTotalIncome() {
+        return transactionRepository.findTotalIncome();
+    }
+
+    public BigDecimal findTotalExpense() {
+        return transactionRepository.findTotalExpense();
+    }
+    public BigDecimal findTotalIncomeBetween(LocalDate start, LocalDate end) {
+        return transactionRepository.findTotalIncomeBetween(start, end).orElse(BigDecimal.ZERO);
+    }
+
+    public BigDecimal findTotalExpenseBetween(LocalDate start, LocalDate end) {
+        return transactionRepository.findTotalExpenseBetween(start, end).orElse(BigDecimal.ZERO);
+    }
+
 }

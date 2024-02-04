@@ -34,8 +34,6 @@
 
         </div>
 
-        <input type="text" th:field="*{islemTarihi}"
-               class="form-control mb-4 w-50" placeholder="İslem Tarihi">
         <input type="text" th:field="*{miktar}"
                class="form-control mb-4 w-50" placeholder="Miktar">
         <input type="text" th:field="*{acıklama}"
@@ -44,6 +42,8 @@
 
 
     </form>
+
+
     <hr>
     <a th:href="@{/islemler}">İşlem Listesine Geri Dön</a>
 </body>

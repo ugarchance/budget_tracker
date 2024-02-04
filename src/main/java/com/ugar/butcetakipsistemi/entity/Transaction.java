@@ -31,11 +31,22 @@ public class Transaction {
     private String acıklama;
 
     @Column(name = "islem_tarihi")
-    private String islemTarihi;
+    private LocalDateTime islemTarihi;
 
     public String islemTuru;
 
+    @PrePersist
+    protected void onCreate() {
+        if (islemTarihi == null) {
+            islemTarihi = LocalDateTime.now();
+        }
+    }
 
+
+    @PreUpdate
+    protected void onUpdate() {
+        islemTarihi = LocalDateTime.now();
+    }
 
 
 }
