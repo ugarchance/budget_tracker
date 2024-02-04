@@ -1,5 +1,6 @@
+<h1>Budget Tracker</h1>
 
-Budget Tracker
+
 This repository contains a simple budget tracking application designed to help users track their income and expenses and achieve their financial goals.
 
 Features:
