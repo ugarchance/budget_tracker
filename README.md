@@ -20,10 +20,7 @@ Use the application's interface to add your income and expenses, manage categori
 Additional Information:
 
 This application is developed in Java.
-You can find the source code of the application here: https://github.com/ugarchance/budget_tracker: https://github.com/ugarchance/budget_tracker.
-License:
-
-This application is licensed under the MIT License.
+You can find the source code of the application here: https://github.com/ugarchance/budget_tracker
 
 Contributing:
 
