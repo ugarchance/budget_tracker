@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Bütçe Yönetimi Sistemi </title>
@@ -14,10 +14,27 @@
 <div class="container">
     <h3>Bütçe Yönetimi Sistemi</h3>
     <hr>
-    <!--    Add a button -->
-    <a th:href="@{/islem-ekleme-formu}"
-       class="btn btn-primary btn-sm mb-3"
-    >İşlem Ekle</a>
+    <!--    Add a button --><div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/islem-ekleme-formu" class="btn btn-primary btn-sm mb-3">İşlem Ekle</a>
+            </div>
+            <div class="col-md-6">
+                <form action="#"  th:action="@{/logout}"  method="post">
+                    <input type="submit" class="btn btn-danger" value="Logout"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Aktif Kullanıcı: <span sec:authentication="principal.username"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
@@ -48,6 +65,14 @@
                 </a>
             </td>
         </tr>
+        <!-- Tablo sonu -->
+        <tfoot>
+        <tr>
+            <th colspan="4">Toplam</th>
+            <th th:text="${netIncome}">0</th>
+        </tr>
+        </tfoot>
+
         </tbody>
     </table>
 </div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,12 @@ public class TransactionController {
     @GetMapping("/islemler")
     public String getAllTransaction(Model model) {
         List<Transaction> theTransaction = transactionService.findAll();
+        BigDecimal netIncome = transactionService.calculateNetIncome();
+
+
         model.addAttribute("transactions", theTransaction);
+        model.addAttribute("netIncome", netIncome);
+
         return "islemler-listesi";
     }
     @GetMapping("/listeyi-guncelle")

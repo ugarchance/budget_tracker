@@ -22,7 +22,7 @@ public class Transaction {
     private Long id;
 
     @Column(name = "islem_tipi")
-    private String islemTipi; // "income" veya "expense"
+    private String islemTipi;
 
     @Column(name = "miktar")
     private BigDecimal miktar;
@@ -34,6 +34,8 @@ public class Transaction {
     private String islemTarihi;
 
     public String islemTuru;
+
+
 
 
 }

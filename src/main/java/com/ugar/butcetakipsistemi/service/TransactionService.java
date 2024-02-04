@@ -5,6 +5,7 @@ import com.ugar.butcetakipsistemi.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +33,16 @@ public class TransactionService {
     }
     public void deleteById (long theId){
         transactionRepository.deleteById(theId);
+    }
+
+    public BigDecimal calculateNetIncome() {
+        BigDecimal totalIncome = transactionRepository.findTotalIncome();
+        BigDecimal totalExpense = transactionRepository.findTotalExpense();
+
+        // Eğer bir değer null ise, bunu BigDecimal.ZERO olarak kabul et
+        totalIncome = totalIncome == null ? BigDecimal.ZERO : totalIncome;
+        totalExpense = totalExpense == null ? BigDecimal.ZERO : totalExpense;
+
+        return totalIncome.subtract(totalExpense);
     }
 }
