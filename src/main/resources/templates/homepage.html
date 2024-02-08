@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Bütçe Yönetimi Sistemi </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+
+
+<div class="container">
+    <h3>Bütçe Yönetimi Sistemi</h3>
+    <hr>
+    <!--    Add a button --><div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="#"  th:action="@{/logout}"  method="post">
+                    <input type="submit" class="btn btn-danger" value="Logout"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Aktif Kullanıcı: <span sec:authentication="principal.username"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+  <div sec:authorize="hasRole('ADMIN')">
+      <a th:href="@{/leaders}">LeaderShip Meeting</a>
+      (Only for Manager peeps)
+
+  </div>
+    <div sec:authorize="hasRole('MANAGERS')">
+        <a th:href="@{/systems}">LeaderShip Meeting</a>
+        (Only for Manager peeps)
+    </div>
+
+
+
+
+</div>
+
+</body>
+
+
+</html>

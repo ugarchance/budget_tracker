@@ -31,7 +31,7 @@ public class TransactionController {
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
-
+    //İşlemler listesi
     @GetMapping("/islemler")
     public String getAllTransaction(Model model) {
         List<Transaction> transactions = transactionService.findAll();
@@ -55,6 +55,8 @@ public class TransactionController {
         theModel.addAttribute("islemTuru", islemTuru);
         return "islem-ekleme-formu";
     }
+
+    //Main table content
     @GetMapping("/api/gelir-gider-verileri")
     public ResponseEntity<Map<String, BigDecimal>> getGelirGiderVerileri() {
         BigDecimal gelir = transactionService.findTotalIncome();
@@ -66,6 +68,8 @@ public class TransactionController {
 
         return ResponseEntity.ok(veriler);
     }
+
+    //Table content with date
     @GetMapping("/api/gelir-gider-verileri-tarih")
     public ResponseEntity<?> getGelirGiderVerileriTarih(
             @RequestParam("baslangicTarihi") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate baslangicTarihi,
@@ -81,8 +85,7 @@ public class TransactionController {
         return ResponseEntity.ok(veriler);
     }
 
-
-
+    //transaction added form
     @GetMapping("/islem-ekleme-formu")
     public String showFormForAdd(Model theModel){
         Transaction theTransaction = new Transaction();
@@ -92,6 +95,8 @@ public class TransactionController {
 
         return"islem-ekleme-formu";
     }
+
+
     @PostMapping("/save")
     public String save(@ModelAttribute("transaction")Transaction theTransaction){
         transactionService.saveTransaction(theTransaction);

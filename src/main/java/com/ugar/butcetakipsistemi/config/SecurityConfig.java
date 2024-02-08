@@ -27,14 +27,29 @@ public class SecurityConfig {
                 .password("{noop}gür")
                 .roles("HİLMİ")
                 .build();
-        return new InMemoryUserDetailsManager(ahmet, mustafa, hilmi);
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password("{noop}1234")
+                .roles("ADMIN")
+                .build();
+        UserDetails manager = User.builder()
+                .username("managers")
+                .password("{noop}1234")
+                .roles("MANAGERS")
+                .build();
+
+        return new InMemoryUserDetailsManager(ahmet, mustafa, hilmi, admin, manager);
 
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(configurer -> configurer
-                        .anyRequest().authenticated()
+        http.authorizeHttpRequests(configurer ->
+                        configurer
+                                .requestMatchers("/").hasRole("AHMET")
+                                .requestMatchers("/leaders/**").hasRole("MANAGERS")
+                                .requestMatchers("/systems/**").hasRole("MANAGERS")
+                                .anyRequest().authenticated()
                 ).formLogin(form ->
                         form
                                 .loginPage("/showMyLoginPage")
@@ -43,6 +58,9 @@ public class SecurityConfig {
 
                 )
                 .logout(logout -> logout.permitAll()
+                )
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
                 );
 
         return http.build();
